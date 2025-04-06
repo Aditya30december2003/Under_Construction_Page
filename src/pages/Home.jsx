@@ -2,9 +2,6 @@ import { useState, useEffect } from "react"
 import { Mail, AlertTriangle } from "lucide-react"
 import Logo from '../assets/logo.png'
 import { databases } from "../Appwrite/appwrite";
-// Import ID and Query directly from the Appwrite SDK
-import { ID, Query } from "appwrite";
-
 
 const fetchContent = async () => {
   try {
@@ -32,6 +29,7 @@ const fetchContent = async () => {
     throw error;
   }
 };
+
 export default function ModernUnderConstructionPage() {
   const [progress, setProgress] = useState(0)
   const [email, setEmail] = useState("")
@@ -52,29 +50,6 @@ export default function ModernUnderConstructionPage() {
 
     return () => clearTimeout(timer)
   }, [progress])
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setIsLoading(true)
-  //     try {
-  //       const response = await databases.listDocuments(
-  //         '67f13617000106057fa7',      // 🔁 Replace with your database ID
-  //         '67f13bcf0039d714d432',    // 🔁 Replace with your collection ID
-  //         // '67f13ee70022ea39a950'         // ✅ Document ID (from your screenshot)
-  //       );
-  //       setData(response);
-  //       setIsLoading(false)
-  //     } catch (err) {
-  //       console.error("Error fetching data:", err);
-  //       setError("Failed to fetch content 😢");
-  //     }
-  //   };
-
-    
-
-  //   fetchData();
-  // }, []);
 
   useEffect(()=>{
     const loadContent = async () => {
@@ -100,7 +75,6 @@ export default function ModernUnderConstructionPage() {
     loadContent();
   },[])
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
   
@@ -125,8 +99,6 @@ export default function ModernUnderConstructionPage() {
       setSubmitted(false);
     }, 3000);
   };
-  
-
 
   // Loading state
   if (isLoading) {
@@ -179,35 +151,139 @@ export default function ModernUnderConstructionPage() {
         </div>
       )}
 
-      {/* Main content */}
-      <div className="container mx-auto px-6 py-6 flex flex-col lg:flex-row items-center min-h-screen">
-        {/* Left content */}
-        <div className="w-full lg:w-1/2 text-white z-10 mb-12 lg:mb-0">
-          <div className="max-w-xl">
-            <div className="text-sm text-cyan-400 font-medium mb-4">{content.subHeading}</div>
+      {/* Main content - MOBILE LAYOUT REORDERED */}
+      <div className="container mx-auto px-4 sm:px-6 py-6 flex lg:flex-row flex-col items-center min-h-screen">
+        {/* Right illustration section - MOVED TO TOP ON MOBILE */}
+        <div className="w-full lg:w-1/2 flex justify-center items-center relative z-10 px-4 mb-12 lg:mb-0 lg:order-2">
+          <div className="relative transform lg:rotate-3 lg:scale-110 origin-center max-w-full">
+            {/* Orbital visualization - adjusted for responsiveness */}
+            <div className="absolute -top-16 sm:-top-20 lg:-top-32 -right-8 sm:-right-12 lg:-right-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 pointer-events-none select-none">
+              <div className="w-full h-full rounded-full border-4 border-cyan-400/30 absolute transform rotate-45"></div>
+              <div className="w-3/4 h-3/4 rounded-full border-2 border-blue-400/40 absolute top-[12.5%] left-[12.5%] transform -rotate-12"></div>
+              <div className="w-1/2 h-1/2 rounded-full border-2 border-purple-400/30 absolute top-1/4 left-1/4 transform rotate-30"></div>
+              <div className="w-1/3 h-1/3 rounded-full border border-cyan-400/50 absolute top-1/3 left-1/3 transform -rotate-45"></div>
+            </div>
+
+            {/* Laptop with Under Construction - responsive sizing */}
+            <div className="relative lg:-top-[6.5rem]">
+              {/* Laptop - responsive sizing */}
+              <div className="w-72 sm:w-80 md:w-96 lg:w-[30rem] h-48 sm:h-56 md:h-64 lg:h-[25rem] bg-gray-800 rounded-t-lg relative mx-auto">
+                {/* Screen */}
+                <div className="absolute inset-2 rounded-t-md bg-gray-900 overflow-hidden flex items-center justify-center">
+                  <div className="w-full h-full bg-gray-900 p-4 flex flex-col items-center justify-center relative">
+                    {/* Image covering the entire screen */}
+                    <div className="absolute inset-0 w-full h-full">
+                      <img
+                        src="https://53.fs1.hubspotusercontent-na1.net/hub/53/file-2367520974-png/Website-Homepage-Design-2015-Mint.png?width=669&name=Website-Homepage-Design-2015-Mint.png"
+                        alt=""
+                        className="w-full h-full object-cover opacity-80"
+                      />
+                    </div>
+
+                    {/* Orbital visualization on screen - on top of the image */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                      <div className="w-24 sm:w-32 md:w-40 h-24 sm:h-32 md:h-40 rounded-full border border-cyan-400/30 absolute animate-spin-slow"></div>
+                      <div className="w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 rounded-full border border-blue-400/40 absolute animate-spin-slow-reverse"></div>
+                      <div className="w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 rounded-full border border-purple-400/30 absolute animate-pulse"></div>
+                    </div>
+
+                    <div className="opacity-110 z-20 w-full h-full flex items-center justify-center">
+                      <div className="relative bg-blue-950 p-2 rounded-[100%] z-20 w-32 sm:w-24 md:w-28 h-32 sm:h-24 md:h-28 mx-auto">
+                        <div className="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 mb-2 text-cyan-400 mx-auto">
+                          <AlertTriangle className="w-full h-full" />
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xs sm:text-sm font-bold text-cyan-400">UNDER</div>
+                          <div className="text-xs sm:text-sm font-bold text-white">CONSTRUCTION</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Construction Tape Top */}
+                <div className="absolute -top-2 left-0 right-0 h-8 sm:h-10 md:h-12 bg-cyan-400 transform -rotate-6 z-20 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 flex items-center">
+                    {[...Array(10)].map((_, i) => (
+                      <div key={i} className="w-6 sm:w-8 h-full bg-gray-900 transform -skew-x-12"></div>
+                    ))}
+                  </div>
+                  <div className="relative z-10 font-bold text-gray-900 tracking-wider text-xs sm:text-sm"></div>
+                </div>
+
+                {/* Construction Tape Bottom */}
+                <div className="absolute -bottom-2 left-0 right-0 h-8 sm:h-10 md:h-12 bg-cyan-400 transform rotate-6 z-20 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 flex items-center">
+                    {[...Array(10)].map((_, i) => (
+                      <div key={i} className="w-6 sm:w-8 h-full bg-gray-900 transform -skew-x-12"></div>
+                    ))}
+                  </div>
+                  <div className="relative z-10 font-bold text-gray-900 tracking-wider text-xs sm:text-sm"></div>
+                </div>
+              </div>
+
+              {/* Laptop Base - responsive width */}
+              <div className="w-72 sm:w-80 md:w-96 lg:w-[27rem] h-4 sm:h-5 md:h-6 bg-gray-700 rounded-b-lg mx-auto"></div>
+
+              {/* Traffic Cone Left - responsive positioning and scaling */}
+              <div className="hidden sm:block absolute -bottom-6 sm:-bottom-7 md:-bottom-8 -left-4 sm:-left-6 md:-left-8 scale-75 sm:scale-90 md:scale-100">
+                <div className="w-12 sm:w-14 md:w-16 h-20 sm:h-22 md:h-24 relative">
+                  <div className="absolute bottom-0 w-full h-2 sm:h-2.5 md:h-3 bg-gray-700 rounded-full"></div>
+                  <div className="absolute bottom-2 sm:bottom-2.5 md:bottom-3 w-10 sm:w-12 md:w-14 h-2 sm:h-2.5 md:h-3 bg-cyan-500 rounded-sm mx-auto left-0 right-0"></div>
+                  <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 bg-cyan-500 rounded-sm mx-auto left-0 right-0 overflow-hidden">
+                    <div className="w-full h-1.5 sm:h-1.75 md:h-2 bg-white my-1 sm:my-1.25 md:my-1.5"></div>
+                    <div className="w-full h-1.5 sm:h-1.75 md:h-2 bg-white my-1 sm:my-1.25 md:my-1.5"></div>
+                    <div className="w-full h-1.5 sm:h-1.75 md:h-2 bg-white my-1 sm:my-1.25 md:my-1.5"></div>
+                  </div>
+                  <div className="absolute bottom-12 sm:bottom-14 md:bottom-[4.5rem] w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 bg-cyan-500 rounded-sm mx-auto left-0 right-0"></div>
+                </div>
+              </div>
+
+              {/* Traffic Cone Right - responsive positioning and scaling */}
+              <div className="hidden sm:block absolute -bottom-4 sm:-bottom-5 md:-bottom-6 -right-2 sm:-right-3 md:-right-4 scale-75 sm:scale-90 md:scale-100">
+                <div className="w-10 sm:w-11 md:w-12 h-12 sm:h-14 md:h-16 relative">
+                  <div className="absolute bottom-0 w-full h-1.5 sm:h-1.75 md:h-2 bg-gray-700 rounded-full"></div>
+                  <div className="absolute bottom-1.5 sm:bottom-1.75 md:bottom-2 w-8 sm:w-9 md:w-10 h-1.5 sm:h-1.75 md:h-2 bg-cyan-500 rounded-sm mx-auto left-0 right-0"></div>
+                  <div className="absolute bottom-3 sm:bottom-3.5 md:bottom-4 w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 bg-cyan-500 rounded-sm mx-auto left-0 right-0 overflow-hidden">
+                    <div className="w-full h-1 sm:h-1.25 md:h-1.5 bg-white my-0.75 sm:my-0.875 md:my-1"></div>
+                    <div className="w-full h-1 sm:h-1.25 md:h-1.5 bg-white my-0.75 sm:my-0.875 md:my-1"></div>
+                  </div>
+                  <div className="absolute bottom-9 sm:bottom-10.5 md:bottom-12 w-3 sm:w-3.5 md:w-4 h-3 sm:h-3.5 md:h-4 bg-cyan-500 rounded-sm mx-auto left-0 right-0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Left content - MOVED BELOW ILLUSTRATION ON MOBILE */}
+        <div className="w-full lg:w-1/2 text-white z-10 lg:order-1">
+          <div className="max-w-xl mx-auto lg:mx-0">
+            <div className="text-sm text-cyan-400 font-medium mb-4">{content?.subHeading || "WEBSITE STATUS"}</div>
             
-            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-            {content.Heading}<br />
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+            {content?.Heading || "WEBSITE IS UNDER CONSTRUCTION"}<br />
             </h2>
             
             <p className="text-lg text-blue-100 mb-8 max-w-lg">
-              {content.Content} 
+              {content?.Content || "We're currently working on making our website even better."} 
             </p>
             
             {/* Progress Bar */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-blue-100">{content.Completion_Status_Heading}</span>
-                <span className="font-bold text-cyan-400">{content.Completion_Status}%</span>
+                <span className="font-medium text-blue-100">{content?.Completion_Status_Heading || "Completion Status"}</span>
+                <span className="font-bold text-cyan-400">{content?.Completion_Status || progress}%</span>
               </div>
               <div className="h-3 w-full bg-blue-900/60 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-cyan-400 rounded-full transition-all duration-500 ease-out"
-                  style={{ width: `${content.Completion_Status}%` }}
+                  style={{ width: `${content?.Completion_Status || progress}%` }}
                 ></div>
               </div>
               <div className="text-sm text-blue-300 mt-2">
-                {/* Expected completion: <span className="text-cyan-400 font-medium">{statusData.completionDate}</span> */}
+                {content?.completion_date && (
+                  <>Expected completion: <span className="text-cyan-400 font-medium">{content.completion_date}</span></>
+                )}
               </div>
             </div>
             
@@ -221,116 +297,24 @@ export default function ModernUnderConstructionPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
-  <button
-    type="submit"
-    className="inline-flex items-center px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-full transition-colors duration-200"
-  >
-    NOTIFY ME
-    <Mail className="ml-2 h-5 w-5" />
-  </button>
-  {error && <p className="text-red-500 mt-2">{error}</p>}
-  {submitted && <p className="text-green-500 mt-2">Email window opened! 📬</p>}
-</form>
-
-
+                  <button
+                    type="submit"
+                    className="inline-flex items-center px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-full transition-colors duration-200"
+                  >
+                    NOTIFY ME
+                    <Mail className="ml-2 h-5 w-5" />
+                  </button>
+                  {error && <p className="text-red-500 mt-2">{error}</p>}
+                  {submitted && <p className="text-green-500 mt-2">Email window opened! 📬</p>}
+                </form>
               )}
             </div>
             
             {/* Social Media */}
             <div className="mt-8">
               <p className="text-sm text-blue-300 mb-2">
-              {content.end_content}
+              {content?.end_content || "FOLLOW US FOR UPDATES"}
               </p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Right illustration section */}
-        <div className="w-full lg:w-1/2 flex justify-center items-center relative z-10">
-          <div className="relative">
-            {/* Orbital visualization */}
-            <div className="absolute -top-20 -right-20 w-64 h-64">
-              <div className="w-full h-full rounded-full border-4 border-cyan-400/30 absolute transform rotate-45"></div>
-              <div className="w-3/4 h-3/4 rounded-full border-2 border-blue-400/40 absolute top-1/8 left-1/8 transform -rotate-12"></div>
-              <div className="w-1/2 h-1/2 rounded-full border-2 border-purple-400/30 absolute top-1/4 left-1/4 transform rotate-30"></div>
-              <div className="w-1/3 h-1/3 rounded-full border border-cyan-400/50 absolute top-1/3 left-1/3 transform -rotate-45"></div>
-            </div>
-            
-            {/* Laptop with Under Construction */}
-            <div className="relative">
-              {/* Laptop */}
-              <div className="w-96 h-64 bg-gray-800 rounded-t-lg relative">
-                {/* Screen */}
-                <div className="absolute inset-2 rounded-t-md bg-gray-900 overflow-hidden flex items-center justify-center">
-                  <div className="w-full h-full bg-gray-900 p-4 flex flex-col items-center justify-center relative">
-                    {/* Orbital visualization on screen */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-40 h-40 rounded-full border border-cyan-400/30 absolute animate-spin-slow"></div>
-                      <div className="w-32 h-32 rounded-full border border-blue-400/40 absolute animate-spin-slow-reverse"></div>
-                      <div className="w-24 h-24 rounded-full border border-purple-400/30 absolute animate-pulse"></div>
-                    </div>
-                    
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 mb-2 text-cyan-400">
-                        <AlertTriangle className="w-full h-full" />
-                      </div>
-                      <div className="text-center">
-                        <div className="text-sm font-bold text-cyan-400">UNDER</div>
-                        <div className="text-sm font-bold text-white">CONSTRUCTION</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Construction Tape */}
-                <div className="absolute -top-2 left-0 right-0 h-12 bg-cyan-400 transform -rotate-6 z-20 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 flex items-center">
-                    {[...Array(10)].map((_, i) => (
-                      <div key={i} className="w-8 h-full bg-gray-900 transform -skew-x-12"></div>
-                    ))}
-                  </div>
-                  <div className="relative z-10 font-bold text-gray-900 tracking-wider text-sm">UNDER CONSTRUCTION</div>
-                </div>
-
-                {/* Construction Tape Bottom */}
-                <div className="absolute -bottom-2 left-0 right-0 h-12 bg-cyan-400 transform rotate-6 z-20 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 flex items-center">
-                    {[...Array(10)].map((_, i) => (
-                      <div key={i} className="w-8 h-full bg-gray-900 transform -skew-x-12"></div>
-                    ))}
-                  </div>
-                  <div className="relative z-10 font-bold text-gray-900 tracking-wider text-sm">UNDER CONSTRUCTION</div>
-                </div>
-              </div>
-
-              {/* Laptop Base */}
-              <div className="w-96 h-6 bg-gray-700 rounded-b-lg"></div>
-
-              {/* Traffic Cones */}
-              <div className="absolute -bottom-8 -left-8">
-                <div className="w-16 h-24 relative">
-                  <div className="absolute bottom-0 w-full h-3 bg-gray-700 rounded-full"></div>
-                  <div className="absolute bottom-3 w-14 h-3 bg-cyan-500 rounded-sm mx-auto left-0 right-0"></div>
-                  <div className="absolute bottom-6 w-12 h-12 bg-cyan-500 rounded-sm mx-auto left-0 right-0 overflow-hidden">
-                    <div className="w-full h-2 bg-white my-1.5"></div>
-                    <div className="w-full h-2 bg-white my-1.5"></div>
-                    <div className="w-full h-2 bg-white my-1.5"></div>
-                  </div>
-                  <div className="absolute bottom-18 w-6 h-6 bg-cyan-500 rounded-sm mx-auto left-0 right-0"></div>
-                </div>
-              </div>
-
-              <div className="absolute -bottom-6 -right-4">
-                <div className="w-12 h-16 relative">
-                  <div className="absolute bottom-0 w-full h-2 bg-gray-700 rounded-full"></div>
-                  <div className="absolute bottom-2 w-10 h-2 bg-cyan-500 rounded-sm mx-auto left-0 right-0"></div>
-                  <div className="absolute bottom-4 w-8 h-8 bg-cyan-500 rounded-sm mx-auto left-0 right-0 overflow-hidden">
-                    <div className="w-full h-1.5 bg-white my-1"></div>
-                    <div className="w-full h-1.5 bg-white my-1"></div>
-                  </div>
-                  <div className="absolute bottom-12 w-4 h-4 bg-cyan-500 rounded-sm mx-auto left-0 right-0"></div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
