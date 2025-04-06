@@ -1,9 +1,27 @@
+# Force HTTPS and handle www/non-www
 RewriteEngine On
+
+# First redirect both HTTP and HTTPS www to HTTPS non-www
+RewriteCond %{HTTP_HOST} ^www\.jefferyjay\.co\.uk[NC]
+RewriteRule ^(.*)$ https://jefferyjay.co.uk/$1 [L,R=301]
+
+# Then redirect any remaining HTTP to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Your existing routing rules
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]
 
+# Set proper MIME types for JavaScript modules
+<IfModule mod_mime.c>
+    AddType text/javascript .js
+    AddType text/javascript .mjs
+</IfModule>
+
+
+# Your existing cache control headers
 <IfModule mod_headers.c>
     Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
 </IfModule>
-
