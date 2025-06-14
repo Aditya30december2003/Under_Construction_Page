@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { Mail, AlertTriangle } from "lucide-react"
 import Logo from '../assets/logo.png'
-import Website from '../assets/Website_Image.png'
 import Laptop from '../assets/Desktop.png'
 import { databases } from "../Appwrite/appwrite";
 
@@ -34,7 +33,8 @@ const fetchContent = async () => {
 
 export default function ModernUnderConstructionPage() {
   const [progress, setProgress] = useState(0)
-  const [email, setEmail] = useState("")
+  // eslint-disable-next-line no-empty-pattern
+  const [] = useState("")
   const [message, setMessage] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [content, setContent] = useState(null);

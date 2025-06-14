@@ -44,7 +44,7 @@ export default function UnderConstructionPage() {
 
             {/* Description */}
             <p className="text-lg text-blue-100 mb-8 max-w-lg">
-              We're currently working on making our website even better. Our team is implementing new features to
+              We&apos;re currently working on making our website even better. Our team is implementing new features to
               enhance your experience. As promised, our premium software will stay free during this maintenance.
             </p>
 
