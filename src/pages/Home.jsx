@@ -167,7 +167,7 @@ export default function ModernUnderConstructionPage() {
             </div> */}
 
             {/* Laptop with Under Construction - responsive sizing */}
-            <div className="relative lg:-top-[6.5rem]">
+            <div className="relative lg:-top-[6.6rem]">
               <div>
                 <img src={Laptop} alt="" />
               </div>
