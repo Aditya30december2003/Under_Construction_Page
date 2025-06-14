@@ -181,7 +181,7 @@ export default function ModernUnderConstructionPage() {
             <div className="text-sm text-cyan-400 font-medium mb-4">{content?.subHeading || "WEBSITE STATUS"}</div>
             
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-            {content?.Heading || "WEBSITE IS UNDER CONSTRUCTION"}<br />
+            {content?.Heading}<br />
             </h2>
             
             <p className="text-lg text-blue-100 mb-8 max-w-lg">
